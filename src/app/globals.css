@@ -7,7 +7,6 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* DARK MODE FIRST THEME */ /* Near black */ /* Off-white */
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -34,10 +33,9 @@
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
 
-  --radius: 0.625rem; /* Snappier, less rounded corners for a sharp look */ --background: oklch(1 0 0); --foreground: oklch(0.145 0 0); --chart-1: oklch(0.87 0 0); --chart-2: oklch(0.556 0 0); --chart-3: oklch(0.439 0 0); --chart-4: oklch(0.371 0 0); --chart-5: oklch(0.269 0 0); --sidebar: oklch(0.985 0 0); --sidebar-foreground: oklch(0.145 0 0); --sidebar-primary: oklch(0.205 0 0); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.97 0 0); --sidebar-accent-foreground: oklch(0.205 0 0); --sidebar-border: oklch(0.922 0 0); --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.625rem; --background: oklch(1 0 0); --foreground: oklch(0.145 0 0); --chart-1: oklch(0.87 0 0); --chart-2: oklch(0.556 0 0); --chart-3: oklch(0.439 0 0); --chart-4: oklch(0.371 0 0); --chart-5: oklch(0.269 0 0); --sidebar: oklch(0.985 0 0); --sidebar-foreground: oklch(0.145 0 0); --sidebar-primary: oklch(0.205 0 0); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.97 0 0); --sidebar-accent-foreground: oklch(0.205 0 0); --sidebar-border: oklch(0.922 0 0); --sidebar-ring: oklch(0.708 0 0);
 }
 
-/* Optional: if you still want a light mode option under the .light class */
 .light {
   --background: 0 0% 100%;
   --foreground: 0 0% 9%;
@@ -179,4 +177,46 @@
   --sidebar-border: oklch(1 0 0 / 10%);
 
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer utilities {
+  .bento-grid {
+    --bento-gap: clamp(1rem, 2vw, 1.5rem);
+    display: grid;
+    gap: var(--bento-gap);
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media (min-width: 640px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .bento-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  
+  .bento-span-1 { grid-column: span 1 / span 1; grid-row: span 1 / span 1; }
+  .bento-span-2 { grid-column: span 2 / span 2; grid-row: span 2 / span 2; }
+  .bento-span-3 { grid-column: span 3 / span 3; grid-row: span 3 / span 3; }
+
+  .bento-col-span-1 { grid-column: span 1 / span 1; }
+  .bento-col-span-2 { grid-column: span 2 / span 2; }
+  .bento-col-span-3 { grid-column: span 3 / span 3; }
+  .bento-col-span-4 { grid-column: span 4 / span 4; }
+
+  .bento-row-span-1 { grid-row: span 1 / span 1; }
+  .bento-row-span-2 { grid-row: span 2 / span 2; }
+  .bento-row-span-3 { grid-row: span 3 / span 3; }
+  .bento-row-span-4 { grid-row: span 4 / span 4; }
 }
