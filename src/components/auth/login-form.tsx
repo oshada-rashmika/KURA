@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import { useActionState } from 'react'
-import { z } from 'zod/v3'
 import { Loader2, Mail, Lock, AlertCircle, CheckCircle2 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -11,14 +10,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { logIn, signUp, type AuthActionState } from '@/app/auth/actions'
 
-// ─── Zod schema ───────────────────────────────────────────────────────────────
+import { loginSchema, type LoginSchema } from '@/lib/validations/auth'
 
-const loginSchema = z.object({
-  email: z.string().min(1, 'Email is required.').email('Enter a valid email address.'),
-  password: z.string().min(6, 'Password must be at least 6 characters.'),
-})
-
-type LoginSchema = z.infer<typeof loginSchema>
 type FieldErrors = Partial<Record<keyof LoginSchema, string>>
 
 // ─── Initial state ────────────────────────────────────────────────────────────
